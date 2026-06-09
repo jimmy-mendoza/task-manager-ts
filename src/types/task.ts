@@ -1,16 +1,16 @@
-enum Priority {
+export enum Priority {
     High,
     Medium,
     Low
 }
 
-enum Status {
+export enum Status {
     Pending,
     InProgress,
     Completed
 }
 
-interface Task {
+export interface Task {
     id: number;
     title: string;
     description: string;

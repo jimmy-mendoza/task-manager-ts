@@ -1,4 +1,16 @@
 ---
+import TaskCard from "../components/TaskCard.astro"
+import { Priority, Status } from "../types/task"
+
+const TareaPrueba = {
+	id:2020,
+	title: "Tarea1",
+	description: "tarea de prueba",
+	status: Status.Pending,
+	priority: Priority.Low,
+	createdAt: new Date()
+}
+
 
 ---
 
@@ -12,6 +24,6 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<TaskCard task = { TareaPrueba }/>
 	</body>
 </html>

@@ -8,7 +8,7 @@ class TaskManager {
         this.tasks.push(task)
     }
 
-    // retorna las tareas que contenga ese id
+    // devuleve las tareas diferentes a ese id
     removeTask(id:number):void{
         const newTasks = this.tasks.filter((task)=>task.id !== id)
         // guardamos las nuevas tareas 

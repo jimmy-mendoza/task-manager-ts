@@ -1,1 +1,38 @@
 @import "tailwindcss";
+@import "tailwind-animations";
+
+@font-face {
+    font-family: 'Grotesk';
+    src: url("/fonts/Space_Grotesk/static/SpaceGrotesk-Light.ttf");
+    font-weight: 200;
+    font-style:normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grotesk';
+    src: url("/fonts/Space_Grotesk/static/SpaceGrotesk-Medium.ttf");
+    font-weight: 400;
+    font-style:normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grotesk';
+    src: url("/fonts/Space_Grotesk/static/SpaceGrotesk-SemiBold.ttf");
+    font-weight: 600;
+    font-style:normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grotesk';
+    src: url("/fonts/Space_Grotesk/static/SpaceGrotesk-Bold.ttf");
+    font-weight: 800;
+    font-style:normal;
+    font-display: swap;
+}
+
+@theme {
+    --font-grotesk: 'Grotesk',sans-serif;
+}

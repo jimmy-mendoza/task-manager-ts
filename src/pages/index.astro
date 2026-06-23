@@ -1,16 +1,16 @@
 ---
-import TaskCard from "../components/TaskCard.astro"
 import { Priority, Status } from "../types/task"
 import type { Task } from "../types/task.ts"
+import TaskList from "../components/TaskList.astro"
+import FilterBar from "../components/FilterBar.astro"
 import "../styles/global.css"
 
-const TaskList: Task[] = [
+const TaskListPrueba: Task[] = [
 	{id: 1, title: "Tarea 1", description: "Descripción generica 1", status: Status.Completed, priority: Priority.Medium, createdAt: new Date()},
 	{id: 2, title: "Tarea 2", description: "Descripción generica 2", status: Status.InProgress, priority: Priority.Low, createdAt: new Date()},
 	{id: 3, title: "Tarea 3", description: "Descripción generica 3", status: Status.Pending, priority: Priority.High, createdAt: new Date()},
 	{id: 4, title: "Tarea 4", description: "Descripción generica 4", status: Status.Completed, priority: Priority.High, createdAt: new Date()}
 ]
-
 
 ---
 
@@ -21,9 +21,11 @@ const TaskList: Task[] = [
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Tasks</title>
 	</head>
-	<body class="max-h-full max-w-full font-grotesk text-amber-50" >
-		{TaskList.map((task)=> <TaskCard task={task} />)}
+	<body class="max-h-full max-w-full font-grotesk text-amber-50" >	
+		<FilterBar/>
+		<TaskList taskList={TaskListPrueba}/>
+		<div id="task-list-data" data-tasks={JSON.stringify(TaskListPrueba)}></div>
 	</body>
 </html>

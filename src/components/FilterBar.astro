@@ -1,3 +1,69 @@
 ---
+import { Priority,Status } from "../types/task";
 
+const valuesPriority = Object.values(Priority)
+const valuesStatus = Object.values(Status)
 ---
+
+<section class="h-full w-full bg-mist-700 flex flex-col m-auto items-center py-10">
+    <div class=" flex gap-9 mt-8 ">
+        <div> 
+            <button id="btn-priority" class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Prioridad</button>
+            <div id="dropdown-priority" class=" flex flex-col py-3 gap-1 opacity-0 max-h-0 transition-all duration-300">
+            {valuesPriority.filter((value)=> typeof(value) === 'string').map((value)=> <a class=" priority-option cursor-pointer hover:text-amber-200">{value}</a>)}
+            </div>
+        </div>
+        <div>
+            <button id="btn-status" class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">status</button>
+            <div id="dropdown-status" class="flex flex-col py-3 gap-1 opacity-0 max-h-0 transition-all duration-300">
+                {valuesStatus.filter((status)=> typeof(status) === 'string').map((status)=> <a class=" status-option cursor-pointer hover:text-amber-200">{status}</a>)}
+            </div>
+        </div>
+        </div>
+    <div class="flex gap-9 mt-8">
+        <button class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Todas las Tareas</button>
+        <button class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Reset</button>
+    </div>
+</section>
+
+<script>
+    const $DropPrioridad = document.querySelector('#dropdown-priority')
+    const $DropStatus = document.querySelector('#dropdown-status')
+    const $btnPrioridad = document.querySelector('#btn-priority')
+    const $btnStatus = document.querySelector('#btn-status')
+    const $listpriority = document.querySelectorAll('.priority-option')
+    const $listStatus = document.querySelectorAll('.status-option')
+
+   $btnPrioridad?.addEventListener('click',()=>{
+    $DropPrioridad?.classList.toggle('max-h-40')
+    $DropPrioridad?.classList.toggle('opacity-100')
+   })
+
+   
+
+   $btnStatus?.addEventListener('click',()=>{
+    $DropStatus?.classList.toggle('max-h-40')
+    $DropStatus?.classList.toggle('opacity-100')
+   })
+   
+   $listpriority.forEach((option)=>{
+    option.addEventListener('click',()=>{
+        const eventFilterOption = new CustomEvent('filter-option',{
+            detail: { value: option.textContent }
+        })
+        document.dispatchEvent(eventFilterOption)
+    })
+   })
+
+   $listStatus.forEach(option => {
+        option.addEventListener('click',()=>{
+            const eventFilterOption = new CustomEvent('filter-status',{
+                detail:{ value: option.textContent}
+            })
+            document.dispatchEvent(eventFilterOption)
+        })
+   });
+
+
+
+</script>

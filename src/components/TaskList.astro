@@ -1,0 +1,48 @@
+---
+import type { Task } from "../types/task.ts"
+import { Priority,Status } from "../types/task.ts"
+import TaskCard from "./TaskCard.astro";
+
+interface Props {
+    taskList: Task[];
+}
+
+const {taskList} = Astro.props
+---
+
+<div id="tasks-container" class=" h-full w-full bg-mist-700 grid grid-cols-2 m-auto gap-4 p-7"> {taskList.map((task)=><TaskCard task={task} />)} </div>
+
+<script>
+import { Priority, Status } from "../types/task"
+
+    const dataTasks = document.getElementById('task-list-data')
+    const $containerTasks = document.querySelector('#tasks-container')
+    
+        const listTasks = JSON.parse(dataTasks?.dataset.tasks ?? '[]')   
+
+        document.addEventListener('filter-option',(e)=>{
+            const tasksFilter = listTasks.filter((task)=>{
+                return task.priority === Priority[e.detail.value] 
+            })
+            if($containerTasks){
+                $containerTasks.innerHTML = tasksFilter.map((task)=>`
+                <div class="
+     w-xl h-auto bg-mist-400 flex flex-col items-center  m-auto rounded-2xl py-8 space-y-4 border-2 border-mist-950
+     shadow-xl shadow-mist-950
+    ">
+        <h2 class=" text-3xl drop-shadow-lg drop-shadow-mist-700 text-center text-mist-800 uppercase">Tarea</h2>
+        <h3 class=" text-2xl text-center text-mist-950">${task.title}</h3>   
+        <h3 class=" text-3xl drop-shadow-sm drop-shadow-mist-700 text'center text-mist-800 uppercase">Descripción</h3>
+        <p class=" text-xl text-center text-mist-950">${task.description}</p>
+        <h3 class=" text-3xl drop-shadow-sm drop-shadow-mist-700 text-center text-mist-800 uppercase">Prioridad</h3>
+        <p class=" text-xl text-center text-mist-950">${Priority[task.priority]}</p>
+        <h3 class=" text-3xl drop-shadow-sm drop-shadow-mist-700 text-center text-mist-800 uppercase">Estado</h3>
+        <p class=" text-xl text-center text-mist-950">${Status[task.status]}</p>
+        <h3 class=" text-3xl drop-shadow-sm drop-shadow-mist-700 text-center text-mist-800 uppercase">Fecha</h3>
+        <p class=" text-xl text-center text-mist-950">${task.createdAt}</p>
+    </div>
+                `).join('')
+            }
+        })
+    
+</script>

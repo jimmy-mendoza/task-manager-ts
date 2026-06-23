@@ -21,8 +21,8 @@ const valuesStatus = Object.values(Status)
         </div>
         </div>
     <div class="flex gap-9 mt-8">
-        <button class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Todas las Tareas</button>
-        <button class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Reset</button>
+        <button id="btn-all" class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Todas las Tareas</button>
+        <button id="btn-reset" class="border-1 p-1.5 rounded-lg shadow-md shadow-mist-300 hover:scale-105 transition-transform cursor-pointer">Reset</button>
     </div>
 </section>
 
@@ -33,6 +33,8 @@ const valuesStatus = Object.values(Status)
     const $btnStatus = document.querySelector('#btn-status')
     const $listpriority = document.querySelectorAll('.priority-option')
     const $listStatus = document.querySelectorAll('.status-option')
+    const $btnReset = document.querySelector('#btn-reset')
+    const $btnAll = document.querySelector('#btn-all')
 
    $btnPrioridad?.addEventListener('click',()=>{
     $DropPrioridad?.classList.toggle('max-h-40')
@@ -64,6 +66,20 @@ const valuesStatus = Object.values(Status)
         })
    });
 
+   $btnReset?.addEventListener('click',()=>{
+    const resetTasks = new CustomEvent('reset-tasks',{
+        detail:{
 
+        }
+    })
+    document.dispatchEvent(resetTasks)
+   })
+
+   $btnAll?.addEventListener('click',()=>{
+    const allTasks = new CustomEvent('all-tasks',{
+        detail:{}
+    })
+    document.dispatchEvent(allTasks)
+   })
 
 </script>

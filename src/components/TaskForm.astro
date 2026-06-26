@@ -1,0 +1,70 @@
+---
+
+---
+
+<div class="flex flex-col min-w-5xl max-w-6axl m-auto bg-mist-600 justify-center items-center">
+<h1 class="text-3xl p-6 drop-shadow-mist-900 drop-shadow-xl uppercase ">Gestor de Tareas</h1>
+<form id="form-task" class="w-full h-screen flex flex-col items-center " action="">
+
+    <div class="flex content-between w-full h-auto justify-center items-center my-14 ">
+        <div class="flex flex-col gap-y-2">
+            <h3 class=" text-2xl uppercase text-mist-50 drop-shadow-xl drop-shadow-mist-900 mr-4 ">Tarea</h3>
+            <input name="" id="input-task" placeholder="ingrese una tarea" class="
+            outline-none border-2 rounded-xl p-2 border-mist-50 mr-10" type="text">
+        </div>
+        <div class="flex flex-col gap-y-2">
+            <h3 class="text-2xl uppercase text-mist-100 drop-shadow-xl drop-shadow-mist-900 mr-4">Descripción de la tarea</h3>
+            <input id="input-description" type="text"  placeholder="ingrese una descripcción" class="
+            outline-none border-2 rounded-xl p-2 border-mist-50 
+            ">
+        </div>
+    </div>
+    
+    <div class="flex content-between w-full h-auto my-14 justify-center items-center ">
+        <div class="flex flex-col gap-y-2">
+            <label class="text-2xl uppercase text-mist-100 drop-shadow-xl drop-shadow-mist-900 mr-10 " for="Priori">Prioridad de la tarea</label>
+            <select class=" outline-none border-2 border-mist-300 rounded-xl p-2 bg-mist-900 mr-10" name="Priority" id="Priori">
+                <option value="0">Baja</option>
+                <option value="1">Media</option>
+                <option value="2">Alta</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col gap-y-2">
+            <label class="text-2xl uppercase text-mist-100 drop-shadow-xl drop-shadow-mist-900 mr-2" for="status">Estado de la tarea</label>
+            <select class="outline-none border-2 border-mist-300 rounded-xl p-2 bg-mist-900" name="Status" id="status">
+                <option value="0">Pendiente</option>
+                <option value="1">En progreso</option>
+                <option value="2">Completada</option>
+            </select>
+        </div>
+</div>
+
+    <button class="outiline-none p-2 border-2 border-mist-900 rounded-3xl bg-mist-400 text-mist-900 hover:scale-110 transition" type="submit">Guardar Tarea</button>
+
+</form>
+</div>
+
+<script>
+
+    const $formTask = document.querySelector('#form-task')
+    const $inputTask = document.querySelector('#input-task')
+    const $inputDescription = document.querySelector('#input-description')
+    const $PriorityOption = document.querySelector('#Priori')
+    const $StatusOption = document.querySelector('#status')
+
+    $formTask?.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        const TaskInfo = new CustomEvent('form-task',{
+            detail:{
+                name: $inputTask.value,
+                description: $inputDescription.value,
+                priority: $PriorityOption.value,
+                status: $StatusOption.value,
+                createdAt: new Date().toLocaleDateString()
+            }
+        })
+        document.dispatchEvent(TaskInfo)
+    })
+
+</script>

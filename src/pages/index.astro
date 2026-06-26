@@ -4,6 +4,7 @@ import type { Task } from "../types/task.ts"
 import TaskList from "../components/TaskList.astro"
 import FilterBar from "../components/FilterBar.astro"
 import "../styles/global.css"
+import TaskForm from "../components/TaskForm.astro"
 
 const TaskListPrueba: Task[] = [
 	{id: 1, title: "Tarea 1", description: "Descripción generica 1", status: Status.Completed, priority: Priority.Medium, createdAt: new Date()},
@@ -23,7 +24,8 @@ const TaskListPrueba: Task[] = [
 		<meta name="generator" content={Astro.generator} />
 		<title>Tasks</title>
 	</head>
-	<body class="max-h-full max-w-full font-grotesk text-amber-50" >	
+	<body class="max-h-full max-w-full font-grotesk text-amber-50 bg-mist-900" >	
+		<TaskForm/>
 		<FilterBar/>
 		<TaskList taskList={TaskListPrueba}/>
 		<div id="task-list-data" data-tasks={JSON.stringify(TaskListPrueba)}></div>

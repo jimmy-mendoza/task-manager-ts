@@ -18,7 +18,7 @@ import { Priority, Status } from "../types/task"
     const dataTasks = document.getElementById('task-list-data')
     const $containerTasks = document.querySelector('#tasks-container')
     
-        const listTasks = JSON.parse(dataTasks?.dataset.tasks ?? '[]')   
+        let listTasks = JSON.parse(dataTasks?.dataset.tasks ?? '[]')   
 
         document.addEventListener('filter-option',(e)=>{
             const tasksFilter = listTasks.filter((task)=>{
@@ -68,6 +68,17 @@ import { Priority, Status } from "../types/task"
             if($containerTasks){
                 $containerTasks.innerHTML = renderTask(listTasks)
             }
+        })
+
+        // agregando una tarea en listask
+
+        document.addEventListener('form-task',(e)=>{
+            listTasks.push(e.detail)
+
+            if($containerTasks){
+                $containerTasks.innerHTML = renderTask(listTasks)
+            }
+           
         })
     
 </script>
